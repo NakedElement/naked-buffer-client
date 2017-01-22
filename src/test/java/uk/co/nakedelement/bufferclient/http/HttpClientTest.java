@@ -1,5 +1,8 @@
 package uk.co.nakedelement.bufferclient.http;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,6 +29,8 @@ public class HttpClientTest
 	{
 		final Map<String,String> params = new HashMap<>();
 		params.put("access_token", props.getProperty("access_token"));
-		System.out.println(client.get("profiles.json", params));
+		final Response response = client.get("profiles.json", params);
+		assertEquals(200, response.getStatus());
+		assertFalse(response.getContent().isEmpty());
 	}
 }

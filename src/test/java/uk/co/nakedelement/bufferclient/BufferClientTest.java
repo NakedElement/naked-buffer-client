@@ -1,13 +1,14 @@
 package uk.co.nakedelement.bufferclient;
 
-import java.io.IOException;
+import static org.junit.Assert.assertFalse;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-
+import uk.co.nakedelement.bufferclient.model.Profile;
 import uk.co.nakedelement.bufferclient.tools.TestingProperties;
 
 public class BufferClientTest
@@ -24,9 +25,17 @@ public class BufferClientTest
 	}
 
 	@Test
-	public void getProfiles() throws JsonParseException, JsonMappingException, IOException
+	public void getProfiles()
 	{
-		System.out.println(client.getProfiles());
+		assertFalse(client.getProfiles().isEmpty());
+	}
+	
+	@Test
+	public void getPendingUpdates()
+	{
+		final List<Profile> profiles = new ArrayList<>();
+		profiles.addAll(client.getProfiles());
+		System.out.println(client.getPendingUpdates(profiles.get(0)));
 	}
 
 }

@@ -32,6 +32,11 @@ public class Profile
 		this.id = id;
 	}
 	
+	public String getId()
+	{
+		return id;
+	}
+	
 	public void setAvatar(String avatar)
 	{
 		this.avatar = avatar;
@@ -65,6 +70,8 @@ public class Profile
 	@Override
 	public String toString()
 	{
-		return id;
+		final StringBuilder builder = new StringBuilder("id=");
+		builder.append(getId());
+		return builder.toString();
 	}	
 }

@@ -7,8 +7,6 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
@@ -31,14 +29,27 @@ public class BufferClient
 		client = new HttpClient(BASE_URL);
 	}
 
-	public Collection<Profile> getProfiles() throws JsonParseException, JsonMappingException, IOException
+	public Collection<Profile> getProfiles()
+	{		
+		try
+		{
+			final Map<String, String> params = new HashMap<>();		
+			final String json = get("profiles.json", params);
+			log.debug(json);			
+			return new ObjectMapper().readValue(json, TypeFactory.defaultInstance().constructCollectionType(Collection.class, Profile.class));
+		}
+		catch(IOException e)
+		{
+			throw new BufferClientException(e);
+		}
+	}
+	
+	public String getPendingUpdates(Profile profile)
 	{
-		
 		final Map<String, String> params = new HashMap<>();
-		final String json = get("profiles.json", params);
+		final String json = get("profiles/" + profile.getId() + "/updates/pending.json", params);
 		log.debug(json);
-		final ObjectMapper mapper = new ObjectMapper();
-		return mapper.readValue(json, TypeFactory.defaultInstance().constructCollectionType(Collection.class, Profile.class));
+		return json;
 	}
 	
 	private String get(String url, Map<String, String> params)

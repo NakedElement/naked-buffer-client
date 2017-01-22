@@ -1,5 +1,8 @@
 package uk.co.nakedelement.bufferclient.http;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,6 +24,8 @@ public class HttpClientTest
 	@Test
 	public void test()
 	{
-		System.out.println(client.get("profiles.json?access_token=" + props.getProperty("access_token")));
+		final Map<String,String> params = new HashMap<>();
+		params.put("access_token", props.getProperty("access_token"));
+		System.out.println(client.get("profiles.json", params));
 	}
 }

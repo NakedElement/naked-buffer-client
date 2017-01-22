@@ -5,7 +5,6 @@ import java.io.InputStream;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -40,7 +39,7 @@ public class HttpClient
 		}
 	}
 	
-	private static HttpResponse execute(HttpRequestBase request) throws ClientProtocolException, IOException
+	private static HttpResponse execute(HttpRequestBase request) throws IOException
 	{
 		return HttpClientBuilder.create().build().execute(request);		
 	}

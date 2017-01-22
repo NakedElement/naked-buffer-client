@@ -25,7 +25,7 @@ public class HttpClientTest
 	}
 
 	@Test
-	public void test()
+	public void get()
 	{
 		final Map<String,String> params = new HashMap<>();
 		params.put("access_token", props.getProperty("access_token"));

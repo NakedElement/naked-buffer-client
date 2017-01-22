@@ -3,4 +3,5 @@
 /.settings/
 /.DS_Store/
 /scripts/.DS_Store
+/src/test/resources/local_test.properties 
 

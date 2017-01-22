@@ -1,4 +1,4 @@
-package uk.co.nakedelement.bufferclient;
+package uk.co.nakedelement.bufferclient.tools;
 
 import java.io.File;
 import java.io.FileInputStream;

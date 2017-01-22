@@ -9,7 +9,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import uk.co.nakedelement.bufferclient.TestingProperties;
+import uk.co.nakedelement.bufferclient.tools.TestingProperties;
 
 public class HttpClientTest
 {

@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import uk.co.nakedelement.bufferclient.http.HttpClient;
 import uk.co.nakedelement.bufferclient.model.Profile;
+import uk.co.nakedelement.bufferclient.model.Updates;
 
 public class BufferClient
 {
@@ -44,12 +45,19 @@ public class BufferClient
 		}
 	}
 	
-	public String getPendingUpdates(Profile profile)
+	public Updates getPendingUpdates(Profile profile)
 	{
+		try
+		{
 		final Map<String, String> params = new HashMap<>();
 		final String json = get("profiles/" + profile.getId() + "/updates/pending.json", params);
 		log.debug(json);
-		return json;
+		return new ObjectMapper().readValue(json, Updates.class);
+		}
+		catch(IOException e)
+		{
+			throw new BufferClientException(e);
+		}
 	}
 	
 	private String get(String url, Map<String, String> params)

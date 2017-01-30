@@ -1,30 +1,30 @@
 package uk.co.nakedelement.bufferclient.model;
 
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @XmlRootElement
 public class Profile
 {
-	@XmlElement(name="id")
+	@JsonProperty("id")
 	private String id;
 	
-	@XmlElement(name="avatar")
+	@JsonProperty("avatar")
 	private String avatar;
 	
-	@XmlElement(name="service")
+	@JsonProperty("service")
 	private String service;	
 	
-	@XmlElement(name="counts")
+	@JsonProperty("counts")
 	private Counts counts;
 	
-	@XmlElement(name="statistics")
+	@JsonProperty("statistics")
 	private Statistics statistics;
 	
-	@XmlElement(name="schedules")
+	@JsonProperty("schedules")
 	private ScheduleTime[] schedules;
 	
 	public void setId(String id)

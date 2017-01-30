@@ -1,27 +1,27 @@
 package uk.co.nakedelement.bufferclient.model;
 
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @XmlRootElement
 public class Counts
 {
-	@XmlElement(name="daily_suggestions")
+	@JsonProperty("daily_suggestions")
 	private int dailySuggestions;
 	
-	@XmlElement(name="drafts")
+	@JsonProperty("drafts")
 	private int drafts;
 	
-	@XmlElement(name="reminders")
+	@JsonProperty("reminders")
 	private int reminders;
 	
-	@XmlElement(name="sent")
+	@JsonProperty("sent")
 	private int sent;
 	
-	@XmlElement(name="pending")
+	@JsonProperty("pending")
 	private int pending;
 
 	public int getDailySuggestions()

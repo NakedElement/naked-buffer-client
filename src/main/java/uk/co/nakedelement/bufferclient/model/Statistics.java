@@ -1,12 +1,13 @@
 package uk.co.nakedelement.bufferclient.model;
 
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @XmlRootElement
 public class Statistics
 {
-	@XmlElement(name="followers")
+	@JsonProperty("followers")
 	private int followers;
 
 	public int getFollowers()

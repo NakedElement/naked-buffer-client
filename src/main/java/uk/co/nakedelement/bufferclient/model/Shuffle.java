@@ -1,18 +1,18 @@
 package uk.co.nakedelement.bufferclient.model;
 
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @XmlRootElement
 public class Shuffle
 {
-	@XmlElement(name="success")
+	@JsonProperty("success")
 	private boolean success;
 	
-	@XmlElement(name="time_to_shuffle")
+	@JsonProperty("time_to_shuffle")
 	private double timeToShuffle;
 
 	public boolean isSuccess()

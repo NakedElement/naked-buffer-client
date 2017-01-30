@@ -1,15 +1,16 @@
 package uk.co.nakedelement.bufferclient.model;
 
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @XmlRootElement
 public class ScheduleTime
 {
-	@XmlElement(name="days")
+	@JsonProperty("days")
 	private String[] days;
 	
-	@XmlElement(name="times")
+	@JsonProperty("times")
 	private String[] times;
 
 	public String[] getDays()

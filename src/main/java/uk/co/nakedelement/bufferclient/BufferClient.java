@@ -88,6 +88,26 @@ public class BufferClient
 		}
 	}
 	
+	public String createUpdate(Collection<Profile> profiles, String text)
+	{
+//		try
+//		{
+			final Map<String, String> params = new HashMap<>();
+			final Map<String, String> bodyParams = new HashMap<>();
+			bodyParams.put("text", text);
+			for(final Profile profile : profiles)
+				bodyParams.put("profile_ids[]", profile.getId());	
+			
+			final String json = post("updates/create.json", params, bodyParams);
+			log.debug(json);
+			return json;
+//		}
+//		catch(IOException e)
+//		{
+//			throw new BufferClientException(e);
+//		}
+	}
+	
 	private String get(String url, Map<String, String> params)
 	{
 		addAccessToken(params);

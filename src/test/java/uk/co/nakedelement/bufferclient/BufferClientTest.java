@@ -5,8 +5,10 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import uk.co.nakedelement.bufferclient.model.Profile;
@@ -64,6 +66,13 @@ public class BufferClientTest
 	{
 		final Shuffle result = client.shuffleUpdates(getProfile());
 		assertTrue(result.isSuccess());
+	}
+	
+	@Ignore
+	@Test
+	public void createUpdate()
+	{
+		System.out.println(client.createUpdate(client.getProfiles(), "Test me! " + UUID.randomUUID().toString()));
 	}
 	
 	private Profile getProfile()

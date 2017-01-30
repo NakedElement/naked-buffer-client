@@ -1,6 +1,7 @@
 package uk.co.nakedelement.bufferclient;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import uk.co.nakedelement.bufferclient.model.Profile;
+import uk.co.nakedelement.bufferclient.model.Shuffle;
 import uk.co.nakedelement.bufferclient.tools.TestingProperties;
 
 public class BufferClientTest
@@ -33,9 +35,42 @@ public class BufferClientTest
 	@Test
 	public void getPendingUpdates()
 	{
+		System.out.println(client.getPendingUpdates(getProfile()));
+	}
+	
+	@Test
+	public void shuffleUpdates()
+	{
+		final Shuffle result = client.shuffleUpdates(getProfile(), 10, true);
+		assertTrue(result.isSuccess());
+	}
+	
+	@Test
+	public void shuffleUpdatesCountOnly()
+	{
+		final Shuffle result = client.shuffleUpdates(getProfile(), 10);
+		assertTrue(result.isSuccess());
+	}
+	
+	@Test
+	public void shuffleUpdatesUtcOnly()
+	{
+		final Shuffle result = client.shuffleUpdates(getProfile(), true);
+		assertTrue(result.isSuccess());
+	}
+	
+	@Test
+	public void shuffleUpdatesProfileOnly()
+	{
+		final Shuffle result = client.shuffleUpdates(getProfile());
+		assertTrue(result.isSuccess());
+	}
+	
+	private Profile getProfile()
+	{
 		final List<Profile> profiles = new ArrayList<>();
 		profiles.addAll(client.getProfiles());
-		System.out.println(client.getPendingUpdates(profiles.get(0)));
+		return profiles.get(0);
 	}
 
 }

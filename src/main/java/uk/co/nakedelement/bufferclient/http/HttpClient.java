@@ -48,7 +48,6 @@ public class HttpClient
 						
 			final HttpGet request = new HttpGet(finalUrl);
 			buildRequest(request, params);            
-            log.debug(request.getURI());
             
 			final HttpResponse response = execute(request);
 			return new Response(response.getStatusLine().getStatusCode(), toString(response.getEntity().getContent()));
@@ -67,7 +66,6 @@ public class HttpClient
 			final String finalUrl = buildUrl(url);						
 			final HttpPost request = new HttpPost(finalUrl);
 			buildRequest(request, params, bodyParams);            
-            log.debug(request.getURI());
             
 			final HttpResponse response = execute(request);
 			return new Response(response.getStatusLine().getStatusCode(), toString(response.getEntity().getContent()));
@@ -87,6 +85,7 @@ public class HttpClient
 		
 		final URI uri = new URIBuilder(request.getURI()).addParameters(nameValuePairs).build();
         request.setURI(uri);
+        log.debug(request.getURI());
         return request;
 	}
 	
@@ -96,7 +95,11 @@ public class HttpClient
 		
 		final List<NameValuePair> basicBodyparams = new ArrayList<NameValuePair>();
 		for(final String key : bodyParams.keySet())
-			basicBodyparams.add(new BasicNameValuePair(key, bodyParams.get(key)));			
+		{
+			final NameValuePair pair = new BasicNameValuePair(key, bodyParams.get(key)); 
+			basicBodyparams.add(pair);
+			log.debug(pair);
+		}
 		request.setEntity(new UrlEncodedFormEntity(basicBodyparams, ENCODING));
 		
 		return request;

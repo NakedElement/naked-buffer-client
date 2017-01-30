@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import uk.co.nakedelement.bufferclient.http.HttpClient;
 import uk.co.nakedelement.bufferclient.model.Profile;
+import uk.co.nakedelement.bufferclient.model.Shuffle;
 
 public class BufferClient
 {
@@ -52,10 +53,51 @@ public class BufferClient
 		return json;
 	}
 	
+	public Shuffle shuffleUpdates(Profile profile, Integer count)
+	{
+		return shuffleUpdates(profile, count, null);
+	}
+	
+	public Shuffle shuffleUpdates(Profile profile, Boolean utc)
+	{
+		return shuffleUpdates(profile, null, utc);
+	}
+	
+	public Shuffle shuffleUpdates(Profile profile)
+	{
+		return shuffleUpdates(profile, null, null);
+	}	
+	
+	public Shuffle shuffleUpdates(Profile profile, Integer count, Boolean utc)
+	{
+		try
+		{
+			final Map<String, String> params = new HashMap<>();
+			final Map<String, String> bodyParams = new HashMap<>();
+			if (count != null)
+				bodyParams.put("count", count.toString());
+			if (utc != null)
+				bodyParams.put("utc", utc.toString());
+			final String json = post("profiles/" + profile.getId() + "/updates/shuffle.json", params, bodyParams);
+			log.debug(json);
+			return new ObjectMapper().readValue(json, Shuffle.class);
+		}
+		catch(IOException e)
+		{
+			throw new BufferClientException(e);
+		}
+	}
+	
 	private String get(String url, Map<String, String> params)
 	{
 		addAccessToken(params);
 		return client.get(url, params).getContent();
+	}
+	
+	private String post(String url, Map<String, String> params, Map<String, String> bodyParams)
+	{
+		addAccessToken(params);
+		return client.post(url, params, bodyParams).getContent();
 	}
 	
 	private void addAccessToken(Map<String, String> params)

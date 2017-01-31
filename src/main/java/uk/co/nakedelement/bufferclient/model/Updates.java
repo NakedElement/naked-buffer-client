@@ -35,8 +35,8 @@ public class Updates
 		{
 			final StringBuilder builder = new StringBuilder("total=");
 			builder.append(getTotal());
-			builder.append(", update=");
-			builder.append(getUpdates()[0]);
+//			builder.append(", update=");
+//			builder.append(getUpdates()[0]);
 			return builder.toString();
 		}	
 }

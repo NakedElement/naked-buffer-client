@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import uk.co.nakedelement.bufferclient.http.HttpClient;
 import uk.co.nakedelement.bufferclient.model.Profile;
+import uk.co.nakedelement.bufferclient.model.Schedules;
 import uk.co.nakedelement.bufferclient.model.Updates;
 import uk.co.nakedelement.bufferclient.model.Shuffle;
 
@@ -54,6 +55,21 @@ public class BufferClient
 		final String json = get("profiles/" + profile.getId() + "/updates/pending.json", params);
 		log.debug(json);
 		return new ObjectMapper().readValue(json, Updates.class);
+		}
+		catch(IOException e)
+		{
+			throw new BufferClientException(e);
+		}
+	}
+	
+	public Schedules getScheduleTimes(Profile profile)
+	{
+		try
+		{
+		final Map<String, String> params = new HashMap<>();
+		final String json = get("profiles/" + profile.getId() + "schedules.json", params);
+		log.debug(json);
+		return new ObjectMapper().readValue(json, Schedules.class);
 		}
 		catch(IOException e)
 		{

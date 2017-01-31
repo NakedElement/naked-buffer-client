@@ -33,4 +33,18 @@ public class HttpClientTest
 		assertEquals(200, response.getStatus());
 		assertFalse(response.getContent().isEmpty());
 	}
+	
+	@Test
+	public void post()
+	{
+		final Map<String,String> params = new HashMap<>();
+		params.put("access_token", props.getProperty("access_token"));
+		
+		final Map<String,String> bodyParams = new HashMap<>();
+		bodyParams.put("count", "10");	
+		
+		final Response response = client.post("profiles/58846db231c2250813b2c47f/updates/shuffle.json", params, bodyParams);
+		assertEquals(200, response.getStatus());
+		assertFalse(response.getContent().isEmpty());
+	}
 }

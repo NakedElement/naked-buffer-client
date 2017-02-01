@@ -12,6 +12,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import uk.co.nakedelement.bufferclient.model.Profile;
+import uk.co.nakedelement.bufferclient.model.Schedules;
 import uk.co.nakedelement.bufferclient.model.Shuffle;
 import uk.co.nakedelement.bufferclient.tools.TestingProperties;
 
@@ -73,6 +74,13 @@ public class BufferClientTest
 	public void createUpdate()
 	{
 		System.out.println(client.createUpdate(client.getProfiles(), "Test me! " + UUID.randomUUID().toString()));
+	}
+	
+	@Test
+	public void getScheduleTimes()
+	{
+		final Schedules schedules = client.getScheduleTimes(getProfile());
+		System.out.println(schedules);
 	}
 	
 	private Profile getProfile()

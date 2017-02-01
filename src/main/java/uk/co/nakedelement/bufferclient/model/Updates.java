@@ -18,7 +18,7 @@ public class Updates
 	@JsonProperty("total")
 	private int total;
 	  
-	@JsonProperty("updatesl")
+	@JsonProperty("updates")
 	private Update[] updates;
 	  
 	  

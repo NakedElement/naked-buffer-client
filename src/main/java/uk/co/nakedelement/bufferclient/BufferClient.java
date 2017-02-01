@@ -120,7 +120,7 @@ public class BufferClient
 			final Map<String, String> bodyParams = new HashMap<>();
 			bodyParams.put("text", text);
 			bodyParams.put("shorten", shorten.toString());
-			bodyParams.put("media[picture]", url);
+			bodyParams.put("media[photo]", url);
 			for(final Profile profile : profiles)
 				bodyParams.put("profile_ids[]", profile.getId());	
 			

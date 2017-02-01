@@ -62,14 +62,14 @@ public class BufferClient
 		}
 	}
 	
-	public Schedules getScheduleTimes(Profile profile)
+	public Collection<Schedules> getScheduleTimes(Profile profile)
 	{
 		try
 		{
 			final Map<String, String> params = new HashMap<>();
 			final String json = get("profiles/" + profile.getId() + "/schedules.json", params);
 			log.debug(json);
-			return new ObjectMapper().readValue(json, Schedules.class);
+			return new ObjectMapper().readValue(json, TypeFactory.defaultInstance().constructCollectionType(Collection.class, Schedules.class));
 		}
 		catch(IOException e)
 		{

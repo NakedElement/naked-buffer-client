@@ -4,6 +4,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -79,7 +80,7 @@ public class BufferClientTest
 	@Test
 	public void getScheduleTimes()
 	{
-		final Schedules schedules = client.getScheduleTimes(getProfile());
+		final Collection<Schedules> schedules = client.getScheduleTimes(getProfile());
 		System.out.println(schedules);
 	}
 	

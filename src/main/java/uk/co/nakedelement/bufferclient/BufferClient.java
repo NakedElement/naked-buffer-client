@@ -112,13 +112,15 @@ public class BufferClient
 		}
 	}
 	
-	public Updates createUpdate(Collection<Profile> profiles, String text)
+	public Updates createUpdate(Collection<Profile> profiles, String text, Boolean shorten, String url)
 	{
 		try
 		{
 			final Map<String, String> params = new HashMap<>();
 			final Map<String, String> bodyParams = new HashMap<>();
 			bodyParams.put("text", text);
+			bodyParams.put("shorten", shorten.toString());
+			bodyParams.put("media[picture]", url);
 			for(final Profile profile : profiles)
 				bodyParams.put("profile_ids[]", profile.getId());	
 			

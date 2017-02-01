@@ -74,7 +74,7 @@ public class BufferClientTest
 	@Test
 	public void createUpdate()
 	{
-		System.out.println(client.createUpdate(client.getProfiles(), "Test me! " + UUID.randomUUID().toString()));
+		System.out.println(client.createUpdate(client.getProfiles(), "Test me! " + UUID.randomUUID().toString() + " " + "https://www.teamviewer.com/en/?pid=google.tv_ex_tv12.s.gb&gclid=CjwKEAiAq8bEBRDuuOuyspf5oyMSJAAcsEyWpslaLcYlVJnqpkrVJ4Jir1HFZLtYlc5XMCWo7UBkqhoCeCrw_wcB", true, "http://i.imgur.com/YP7oS9H.jpg"));
 	}
 	
 	@Test

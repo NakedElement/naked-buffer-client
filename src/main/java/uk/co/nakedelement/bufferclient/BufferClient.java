@@ -67,7 +67,7 @@ public class BufferClient
 		try
 		{
 			final Map<String, String> params = new HashMap<>();
-			final String json = get("profiles/" + profile.getId() + "schedules.json", params);
+			final String json = get("profiles/" + profile.getId() + "/schedules.json", params);
 			log.debug(json);
 			return new ObjectMapper().readValue(json, Schedules.class);
 		}

@@ -112,10 +112,10 @@ public class BufferClient
 		}
 	}
 	
-	public String createUpdate(Collection<Profile> profiles, String text)
+	public Updates createUpdate(Collection<Profile> profiles, String text)
 	{
-//		try
-//		{
+		try
+		{
 			final Map<String, String> params = new HashMap<>();
 			final Map<String, String> bodyParams = new HashMap<>();
 			bodyParams.put("text", text);
@@ -124,12 +124,12 @@ public class BufferClient
 			
 			final String json = post("updates/create.json", params, bodyParams);
 			log.debug(json);
-			return json;
-//		}
-//		catch(IOException e)
-//		{
-//			throw new BufferClientException(e);
-//		}
+			return new ObjectMapper().readValue(json, Updates.class);
+		}
+		catch(IOException e)
+		{
+			throw new BufferClientException(e);
+		}
 	}
 	
 	private String get(String url, Map<String, String> params)

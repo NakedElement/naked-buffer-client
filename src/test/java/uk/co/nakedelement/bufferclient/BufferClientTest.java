@@ -70,7 +70,7 @@ public class BufferClientTest
 		assertTrue(result.isSuccess());
 	}
 	
-	@Ignore
+	//@Ignore
 	@Test
 	public void createUpdate()
 	{

@@ -13,7 +13,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import uk.co.nakedelement.bufferclient.model.Profile;
-import uk.co.nakedelement.bufferclient.model.Schedules;
+import uk.co.nakedelement.bufferclient.model.ScheduleTime;
 import uk.co.nakedelement.bufferclient.model.Shuffle;
 import uk.co.nakedelement.bufferclient.tools.TestingProperties;
 
@@ -80,7 +80,7 @@ public class BufferClientTest
 	@Test
 	public void getScheduleTimes()
 	{
-		final Collection<Schedules> schedules = client.getScheduleTimes(getProfile());
+		final Collection<ScheduleTime> schedules = client.getScheduleTimes(getProfile());
 		System.out.println(schedules);
 	}
 	

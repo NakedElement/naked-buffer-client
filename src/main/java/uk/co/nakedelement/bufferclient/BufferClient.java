@@ -112,7 +112,7 @@ public class BufferClient
 		}
 	}
 	
-	public Updates createUpdate(Collection<Profile> profiles, String text, Boolean shorten, String url)
+	public Updates createUpdate(Collection<Profile> profiles, String text, Boolean shorten, String photoURL, Boolean now, Boolean top, Boolean attachment)
 	{
 		try
 		{
@@ -120,8 +120,11 @@ public class BufferClient
 			final Map<String, String> bodyParams = new HashMap<>();
 			bodyParams.put("text", text);
 			bodyParams.put("shorten", shorten.toString());
-			bodyParams.put("media[photo]", url);
-			for(final Profile profile : profiles)
+			bodyParams.put("media[photo]", photoURL);
+			bodyParams.put("now", now.toString());
+			bodyParams.put("top", top.toString());
+			bodyParams.put("attachment", attachment.toString());
+	 		for(final Profile profile : profiles)
 				bodyParams.put("profile_ids[]", profile.getId());	
 			
 			final String json = post("updates/create.json", params, bodyParams);

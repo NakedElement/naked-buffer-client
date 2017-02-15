@@ -32,8 +32,9 @@ public class Update
 	@XmlElement(name="library_update_id")
   private String library_update_id;
 	
-//
-	
+  @XmlElement(name="connections")
+  private String connections;
+
 	@XmlElement(name="perm_approvable")
   private boolean perm_approvable;
 	
@@ -275,6 +276,14 @@ public class Update
 	public void setVia(String via) {
 		this.via = via;
 	}
+	
+	public String getConnections() {
+		return connections;
+	}
+
+	public void setConnections(String connections) {
+		this.connections = connections;
+	}
 
 	@Override
 	public String toString()
@@ -303,6 +312,8 @@ public class Update
 		builder.append(getProfile_id());
 		builder.append(", profile_service=");
 		builder.append(getProfile_service());
+		builder.append(", connections=");
+		builder.append(getConnections());
 		builder.append(", retweeted_tweet_id=");
 		builder.append(getRetweeted_tweet_id());
 		builder.append(", scheduled_at=");
